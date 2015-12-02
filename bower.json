@@ -1,0 +1,41 @@
+{
+    "name"         : "fancy-lexer",
+    "title"        : "Fancy-Lexer",
+    "description"  : "JavaScript Lexer-Plugin for Fancy",
+    "version"      : "0.0.1",
+    "main"         : "fancylexer.min.js",
+    "homepage"     : "http://mephiztopheles.wtf/fancy.lexer",
+    "author"       : {
+        "name" : "Markus Ahrweiler"
+    },
+    "repository"   : {
+        "type" : "git",
+        "url"  : "https://github.com/Mephiztopheles/fancy.lexer.git"
+    },
+    "ignore"       : [
+        "source",
+        "spec",
+        ".bowerrc",
+        ".gitignore",
+        ".jshintignore",
+        ".jshintrc",
+        "bower.json",
+        "gruntfile.js",
+        "package.json",
+        "README.md"
+    ],
+    "keywords"     : [
+        "fancy",
+        "javascript",
+        "browser",
+        "library",
+        "lexer"
+    ],
+    "bugs"         : {
+        "url" : "https://github.com/Mephiztopheles/fancy.lexer/issues"
+    },
+    "license"      : "MIT",
+    "dependencies" : {
+        "fancy"       : ">=1.1.0"
+    }
+}
