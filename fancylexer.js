@@ -141,5 +141,5 @@
 
         return this.tokens;
     };
-    Fancy.Lexer          = Lexer;
+    Fancy.lexer          = Lexer;
 })( Fancy );
