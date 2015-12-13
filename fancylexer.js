@@ -40,7 +40,10 @@
         return this.tokenise( expression );
     }
 
-    Lexer.api = Lexer.prototype = {};
+    Lexer.api = Lexer.prototype = {
+        name: "FancyLexer",
+        version: "0.0.2"
+    };
     Lexer.api.identifier = function() {
         var value,
             token = IDENTIFIER.exec( this.chunk );
