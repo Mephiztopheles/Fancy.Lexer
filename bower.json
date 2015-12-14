@@ -2,7 +2,7 @@
     "name"         : "fancy-lexer",
     "title"        : "Fancy-Lexer",
     "description"  : "JavaScript Lexer-Plugin for Fancy",
-    "version"      : "0.0.2",
+    "version"      : "0.1.0",
     "main"         : "fancylexer.min.js",
     "homepage"     : "http://mephiztopheles.wtf/fancy.lexer",
     "author"       : {
