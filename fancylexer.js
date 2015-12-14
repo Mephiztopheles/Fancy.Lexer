@@ -47,7 +47,7 @@
     Lexer.api.identifier = function () {
         var token = IDENTIFIER.exec( this.chunk );
         if ( token ) {
-            this.tokens.push( { key: "IDENTIFIER", value: token[ 0 ] } );
+            this.tokens.push( { key: "IDENTIFIER", value: token[ 0 ], index: this.index } );
             return token[ 0 ].length;
         }
 
@@ -56,7 +56,7 @@
     Lexer.api.number     = function () {
         var token = NUMBER.exec( this.chunk );
         if ( token ) {
-            this.tokens.push( { key: 'NUMBER', value: token[ 0 ] } );
+            this.tokens.push( { key: 'NUMBER', value: token[ 0 ], index: this.index } );
             return token[ 0 ].length;
         }
 
@@ -73,7 +73,11 @@
                     if ( nextChar == "\\" ) {
                         quoted = true;
                     } else if ( nextChar == firstChar ) {
-                        this.tokens.push( { key: 'STRING', value: this.chunk.substring( 0, i + 1 ) } );
+                        this.tokens.push( {
+                            key  : 'STRING',
+                            value: this.chunk.substring( 0, i + 1 ),
+                            index: this.index
+                        } );
                         return i + 1;
                     }
                 } else {
@@ -87,7 +91,7 @@
     Lexer.api.comment    = function () {
         var token = COMMENT.exec( this.chunk );
         if ( token ) {
-            this.tokens.push( { key: 'COMMENT', value: token[ 0 ] } );
+            this.tokens.push( { key: 'COMMENT', value: token[ 0 ], index: this.index } );
             return token[ 0 ].length;
         }
 
@@ -107,12 +111,16 @@
             var lastNewline = token[ 0 ].lastIndexOf( "\n" ) + 1;
             var size        = token[ 0 ].length - lastNewline;
             if ( size > this.indent ) {
-                this.tokens.push( { key: 'INDENT', value: size - this.indent } );
+                this.tokens.push( { key: 'INDENT', value: size - this.indent, index: this.index } );
             } else {
                 if ( size < this.indent ) {
-                    this.tokens.push( { key: 'OUTDENT', value: this.indent - size } );
+                    this.tokens.push( { key: 'OUTDENT', value: this.indent - size, index: this.index } );
                 }
-                this.tokens.push( { key: 'TERMINATOR', value: token[ 0 ].substring( 0, lastNewline ) } );
+                this.tokens.push( {
+                    key  : 'TERMINATOR',
+                    value: token[ 0 ].substring( 0, lastNewline ),
+                    index: this.index
+                } );
             }
             this.indent = size;
             return token[ 0 ].length;
@@ -123,7 +131,7 @@
     Lexer.api.literal    = function () {
         var tag = this.chunk.slice( 0, 1 );
         if ( OPTABLE[ tag ] ) {
-            this.tokens.push( { key: OPTABLE[ tag ], value: tag } );
+            this.tokens.push( { key: OPTABLE[ tag ], value: tag, index: this.index } );
             return 1;
         }
 
@@ -138,6 +146,7 @@
                 return;
             }
             i += diff;
+            this.index = i;
         }
 
         return this.tokens;
