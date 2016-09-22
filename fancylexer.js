@@ -42,7 +42,7 @@
 
     Lexer.api = Lexer.prototype = {
         name   : "FancyLexer",
-        version: "0.1.0"
+        version: "1.0.0"
     };
     Lexer.api.identifier = function () {
         var token = IDENTIFIER.exec( this.chunk );
